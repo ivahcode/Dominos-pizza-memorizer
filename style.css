@@ -19,14 +19,14 @@ h1 {
 
 .topping {
   cursor: pointer;
-  background-color: #4d4d4d;
+  background-color: #e0e0e0;
   border-radius: 4px;
   padding: 2px 6px;
   margin-right: 4px;
 }
 
 .topping.revealed {
-  background-color: #c8f7c5;
+  background-color: #4d4d4d;
 }
 
 button {

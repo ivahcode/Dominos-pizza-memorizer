@@ -2,13 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Domino's Pizza Topping Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pizza Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #fff9f0;
+    }
+    summary {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    details {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .pizza {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #fef4e8;
+      border-radius: 8px;
+    }
+    .ingredient {
+      background-color: #ffedcc;
+      border: none;
+      margin: 2px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .reset-button {
+      margin-top: 5px;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      background-color: #ffccaa;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Domino's Pizza Topping Quiz</h1>
-  <div id="pizzas-container"></div>
-  <script src="script.js"></script>
+  <h1>🍕 Pizza Quiz</h1>
+
+  <!-- Section 1 -->
+  <details>
+    <summary>Section 1: Classic Pizzas</summary>
+    <div class="pizza" data-ingredients="Tomato Sauce, Mozzarella, Basil">
+      Pizza Margherita:
+      <span class="ingredients"></span>
+      <button class="reset-button">Reset</button>
+    </div>
+    <div class="pizza" data-ingredients="Tomato Sauce, Mozzarella, Pepperoni">
+      Pepperoni Pizza:
+      <span class="ingredients"></span>
+      <button class="reset-button">Reset</button>
+    </div>
+  </details>
+
+  <!-- Section 2 -->
+  <details>
+    <summary>Section 2: Veggie Pizzas</summary>
+    <div class="pizza" data-ingredients="Tomato Sauce, Mozzarella, Bell Peppers, Onions, Olives">
+      Veggie Supreme:
+      <span class="ingredients"></span>
+      <button class="reset-button">Reset</button>
+    </div>
+  </details>
+
+  <!-- Section 3 -->
+  <details>
+    <summary>Section 3: Meat Lovers</summary>
+    <div class="pizza" data-ingredients="BBQ Sauce, Mozzarella, Sausage, Bacon, Ham">
+      Meat Feast:
+      <span class="ingredients"></span>
+      <button class="reset-button">Reset</button>
+    </div>
+  </details>
+
+  <!-- Section 4 -->
+  <details>
+    <summary>Section 4: Gourmet Specials</summary>
+    <div class="pizza" data-ingredients="White Sauce, Mozzarella, Truffle Oil, Mushrooms">
+      Truffle Mushroom:
+      <span class="ingredients"></span>
+      <button class="reset-button">Reset</button>
+    </div>
+  </details>
+
+  <script>
+    document.querySelectorAll('.pizza').forEach(pizzaEl => {
+      const ingredientText = pizzaEl.getAttribute('data-ingredients');
+      const ingredients = ingredientText.split(',').map(i => i.trim());
+      const container = pizzaEl.querySelector('.ingredients');
+      const resetBtn = pizzaEl.querySelector('.reset-button');
+
+      function renderIngredients() {
+        container.innerHTML = '';
+        ingredients.forEach((ingredient, index) => {
+          const btn = document.createElement('button');
+          btn.textContent = '[...]';
+          btn.className = 'ingredient';
+          btn.addEventListener('click', () => {
+            btn.textContent = ingredient;
+            btn.disabled = true;
+          });
+          container.appendChild(btn);
+        });
+      }
+
+      resetBtn.addEventListener('click', () => {
+        renderIngredients();
+      });
+
+      renderIngredients();
+    });
+  </script>
 </body>
 </html>
